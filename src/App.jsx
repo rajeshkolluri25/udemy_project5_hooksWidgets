@@ -1,4 +1,5 @@
-import React from "react";
+import React,{ useState } from "react";
+import DropDown from "./components/Dropdown"
 import Search from "./components/Search";
 // import Accordion from "../src/components/Accordion";
 
@@ -16,11 +17,32 @@ import Search from "./components/Search";
 //         content:"We use React by creating the components"
 //     }
 // ]
-
+const options=[
+    {
+        label:"The Color Red",
+        value:"red"
+    },
+    {
+        label:"The Color Greeen",
+        value:"green"
+    },
+    {
+        label:"The Color Blue",
+        value:"blue"
+    }
+]
 const App =() =>{
+    const[selected,setSelected]=useState(options[0])
+    const[showDropdown,setShowDropdown]=useState(true);
     return(
         <div>
             <Search/>
+            <button onClick={()=>setShowDropdown(!showDropdown)}>Toggle Dropdown</button>
+            
+            {showDropdown ?
+                <DropDown selected={selected} onSelectedChange={setSelected} options={options}/>:null
+
+            }
         </div>
     )
 }
